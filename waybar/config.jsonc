@@ -1,0 +1,201 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 40,
+  "spacing": 5,
+  "margin-top": 12,
+  "margin-right": 12,
+  "margin-left": 12,
+
+  "modules-left": [
+    "custom/paddc",
+    "hyprland/workspaces",
+    "custom/paddc",
+    "custom/prefix",
+    "hyprland/window",
+  ],
+
+  "modules-center": [
+    "custom/player",
+    "custom/paddc",
+    "clock#date",
+    "custom/paddc",
+    "clock#time",
+  ],
+
+  "modules-right": [
+    "battery",
+    "custom/paddc",
+    "memory",
+    "custom/paddc",
+    "cpu",
+    "custom/paddc",
+    "pulseaudio",
+    "custom/paddc",
+    "bluetooth",
+    "custom/paddc",
+    "network",
+    "custom/paddc",
+  ],
+
+  "memory": {
+    "interval": 30,
+    "format": " <span color='#fbf1c7' >{}%</span>",
+    "max-length": 10,
+  },
+
+  "cpu": {
+    "interval": 10,
+    "format": " <span color='#fbf1c7' >{}%</span>",
+    "max-length": 10,
+  },
+
+  "custom/rofi": {
+    "format": "<span color='#fbf1c7' >󰮯</span>",
+    "on-click": "rofi -show drun",
+    "on-click-right": "wlogout",
+    "escape": true,
+    "tooltip": false,
+  },
+
+  // Modules configuration
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "active-only": false,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "<span color='#ba544c' >󰊠</span>",
+      "2": "<span color='#98971a' >󰊠</span>",
+      "3": "<span color='#d79921' >󰊠</span>",
+      "4": "<span color='#458588' >󰊠</span>",
+      "5": "<span color='#b16286' >󰊠</span>",
+      "6": "<span color='#689d6a' >󰊠</span>",
+      "7": "<span color='#fe8019' >󰊠</span>",
+      "default": "<span color='#cc241d'>󰊠</span>",
+    },
+    "persistent-workspaces": {
+      "*": 5,
+    },
+  },
+
+  "hyprland/window": {
+    "format": "{class}",
+    "max-length": 20,
+    "rewrite": {
+      "": " Hyprland",
+      "Alacritty": " Terminal",
+      "dev.zed.Zed": "Zed",
+    },
+  },
+
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "<span color='#fbf1c7' > </span>{volume}%",
+    "format-muted": "<span color='#ba544c' > </span>{volume}%",
+    "format-bluetooth": "<span color='#fbf1c7' > </span>{volume}%",
+    "format-bluetooth-muted": "S<span color='#ba544c' > </span>{volume}%",
+    "format-source": "{volume}% ",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip": false,
+    "max-volume": 130,
+  },
+
+  "battery#bat2": {
+    "bat": "BAT0",
+  },
+
+  "battery": {
+    "interval": 1,
+    "states": {
+      "good": 99,
+      "warning": 30,
+      "critical": 20,
+    },
+    "format-icons": [" ", " ", " ", " ", " "],
+    "format": "<span color='#8ec07c' >{icon}</span>{capacity}%",
+    "format-critical": "<span color='#cc241d' >{icon}</span>{capacity}%",
+    "format-warning": "<span color='#d8a657' >{icon}</span>{capacity}%",
+    "format-full": "<span color='#8ec07c' >{icon}</span>{capacity}%",
+    "format-charging": "<span color='#8ec07c' ></span>{capacity}%",
+    "format-charging-warning": "<span color='#d8a657' ></span>{capacity}%",
+    "format-charging-critical": "<span color='#cc241d' ></span>{capacity}%",
+    "format-plugged": "<span color='#8ec07c' ></span>{capacity}%",
+    "tooltip": false,
+  },
+
+  "clock#date": {
+    "format": "<span color='#8ec07c' >󰃭 </span>{:%a %d %b}",
+
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 6,
+
+      "format": {
+        "months": "<span color='#3c3835'><b>{}</b></span>",
+        "weekdays": "<span color='#fe8019' font='7'>{}</span>",
+        "today": "<span color='#cc241d'><b>{}</b></span>",
+      },
+    },
+    "tooltip": false,
+    "min-length": 8,
+    "max-length": 20,
+  },
+
+  "clock#time": {
+    "format": "<span color='#ba544c' >󱑂 </span>{:%I:%M %p}",
+    "tooltip": false,
+    // "tooltip-format": "Standard Time: {:%I:%M %p}",
+    "min-length": 8,
+    "max-length": 12,
+  },
+
+  "custom/paddc": {
+    "format": " ",
+    "tooltip": false,
+  },
+
+  "custom/prefix": {
+    "format": "<span color='#a89884' >>></span>",
+    "tooltip": false,
+  },
+
+  "network": {
+    "interface": "wlan0",
+    "format-wifi": " <span color='#fbf1c7' >{essid}</span>",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+    "format-disconnected": "⚠ Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr} \n signalStrength: {signalStrength}%",
+    "on-click": "iwmenu --menu rofi",
+  },
+
+  "bluetooth": {
+    "format": "<span color='#458588'>󰂲 </span>Disconnect",
+    "format-disabled": "<span color='#458588'>󰂲</span>",
+    "format-connected": "<span color='#458588'>󰂱 </span>{device_alias}",
+    "format-connected-battery": "<span color='#458588'>󰂱</span>",
+
+    "tooltip-format": "{num_connections} connected",
+    "tooltip-format-disabled": "Bluetooth Disabled",
+    "tooltip-format-connected": "{num_connections} connected\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}: {device_battery_percentage}%",
+
+    "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
+    "interval": 1,
+    "min-length": 1,
+    "max-length": 10,
+  },
+
+  "custom/player": {
+    "exec": "~/.config/waybar/scripts/player.sh",
+    "format": "{}",
+    "interval": 1,
+    "max-length": 35,
+    "tooltip": false,
+    "on-click-right": "playerctl next",
+    "on-click-left": "playerctl previous",
+    "on-click": "playerctl play-pause",
+  },
+}
